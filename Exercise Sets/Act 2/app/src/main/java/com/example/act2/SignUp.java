@@ -1,4 +1,4 @@
-package com.example.activity2;
+package com.example.act2;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -17,7 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+
+public class SignUp extends AppCompatActivity {
 
     EditText birthdate, birthtime, email, username, password, phone, interests;
     AutoCompleteTextView country, state;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_up);
 
         // Initialize EditText, AutoCompleteTextView, and Button
         birthdate = findViewById(R.id.birthdate);
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,
+            DatePickerDialog datePickerDialog = new DatePickerDialog(SignUp.this,
                     (view, year1, monthOfYear, dayOfMonth) -> birthdate.setText(String.format("%02d/%02d/%d", dayOfMonth, monthOfYear + 1, year1)), year, month, day);
 
             datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             int minute = calendar.get(Calendar.MINUTE);
             boolean is24HourFormat = false;
 
-            TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this,
+            TimePickerDialog timePickerDialog = new TimePickerDialog(SignUp.this,
                     (view, hourOfDay, minute1) -> {
                         String period = (hourOfDay < 12) ? "AM" : "PM";
                         int hour12 = (hourOfDay % 12 == 0) ? 12 : hourOfDay % 12;
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         "Birth Time: " + birthtime.getText().toString();
 
                 // Create an alert dialog to display the information
-                new AlertDialog.Builder(MainActivity.this)
+                new AlertDialog.Builder(SignUp.this)
                         .setTitle("Submitted Information")
                         .setMessage(userData)
                         .setPositiveButton("OK", (dialog, which) -> dialog.dismiss()) // Simplified using lambda
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         // Set onClickListener for Login button
         login.setOnClickListener(v -> {
             // Logic for login button (e.g., navigate to login activity)
-            Toast.makeText(MainActivity.this, "Navigate to Login Screen", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUp.this, "Navigate to Login Screen", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -153,23 +154,9 @@ public class MainActivity extends AppCompatActivity {
             valid = false;
         }
 
-        // Validate interests
-        if (interests.getText().toString().trim().isEmpty()) {
-            interests.setError("Interests cannot be empty");
-            valid = false;
-        }
 
-        // Validate birthdate
-        if (birthdate.getText().toString().trim().isEmpty()) {
-            birthdate.setError("Please select your birthdate");
-            valid = false;
-        }
 
-        // Validate birthtime
-        if (birthtime.getText().toString().trim().isEmpty()) {
-            birthtime.setError("Please select your birth time");
-            valid = false;
-        }
+
 
         return valid;
     }
