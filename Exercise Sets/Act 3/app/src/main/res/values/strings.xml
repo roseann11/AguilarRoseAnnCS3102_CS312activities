@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Act 2</string>
-
+    <string name="app_name">Act 3</string>
     <string-array name="array_region_dropdown">
         <item>Region I</item>
         <item>Region II</item>
@@ -20,8 +19,6 @@
         <item>ARMM</item>
         <item>CARAGA</item>
     </string-array>
-
-
 
 
     <string-array name="region_one_dropdown">
@@ -193,7 +190,5 @@
         <item>Surigao del Sur</item>
         <item>Dinagat Islands</item>
     </string-array>
-
-
 
 </resources>

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5DCF5">
+    android:background="#F5DCF5"
+    tools:context=".SignUp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +32,6 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- Other form fields -->
 
         <EditText
             android:id="@+id/unm"
@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/myshape"
-            android:fontFamily="@font/lora_medium"
+            android:fontFamily="@font/lora"
             android:hint="Username"
             android:inputType="text"
             android:padding="3dp"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/myshape"
-            android:fontFamily="@font/lora_medium"
+            android:fontFamily="@font/lora"
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="3dp"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/myshape"
-            android:fontFamily="@font/lora_medium"
+            android:fontFamily="@font/lora"
             android:hint="Email ID"
             android:inputType="textEmailAddress"
             android:padding="3dp"
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/myshape"
-            android:fontFamily="@font/lora_medium"
+            android:fontFamily="@font/lora"
             android:hint="Phone Number"
             android:inputType="phone"
             android:maxLength="10"
@@ -86,18 +86,18 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black" />
 
+
         <TextView
             android:id="@+id/country_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Country: Philippines"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="5dp"
-            android:fontFamily="@font/lora_medium" />
-
+            android:fontFamily="@font/lora"
+            android:text="Country: Philippines"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/myshape"
-                android:fontFamily="@font/lora_medium"
+                android:fontFamily="@font/lora"
                 android:text="Region"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
@@ -125,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/myshape"
-                android:fontFamily="@font/lora_medium"
+                android:fontFamily="@font/lora"
                 android:text="Province"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="140dp"
-            android:fontFamily="@font/lora_medium"
+            android:fontFamily="@font/lora"
             android:text="Gender"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -151,7 +151,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lora_medium"
+                android:fontFamily="@font/lora"
                 android:text="Male"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
@@ -159,7 +159,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lora_medium"
+                android:fontFamily="@font/lora"
                 android:text="Female"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
@@ -172,7 +172,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/myshape"
-            android:fontFamily="@font/lora_medium"
+            android:fontFamily="@font/lora"
             android:hint="Interests"
             android:maxLength="10"
             android:padding="3dp"
@@ -187,7 +187,7 @@
             android:background="@drawable/myshape"
             android:clickable="true"
             android:focusable="false"
-            android:fontFamily="@font/lora_medium"
+            android:fontFamily="@font/lora"
             android:hint="Birthdate"
             android:padding="3dp"
             android:textColor="@android:color/black"
@@ -200,7 +200,7 @@
             android:background="@drawable/myshape"
             android:clickable="true"
             android:focusable="false"
-            android:fontFamily="@font/lora_medium"
+            android:fontFamily="@font/lora"
             android:hint="Birth Time"
             android:padding="3dp"
             android:textColor="@android:color/black"
@@ -218,22 +218,22 @@
                 android:id="@+id/regi"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lora_medium"
+                android:layout_gravity="start"
+                android:layout_marginRight="145px"
+                android:fontFamily="@font/lora"
                 android:text="Sign Up"
                 android:textColor="#F8F5F5"
-                android:layout_marginRight="145px"
-                android:textSize="14sp"
-                android:layout_gravity="start"/>
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/login"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lora_medium"
+                android:layout_gravity="end"
+                android:fontFamily="@font/lora"
                 android:text="Log In"
                 android:textColor="#F8F5F5"
-                android:textSize="14sp"
-                android:layout_gravity="end"/>
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>

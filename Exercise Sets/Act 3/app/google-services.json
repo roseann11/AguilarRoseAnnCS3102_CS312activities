@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "556397144019",
+    "project_id": "act-3-5a74c",
+    "storage_bucket": "act-3-5a74c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556397144019:android:c6d3c0e1ee70c86481b126",
+        "android_client_info": {
+          "package_name": "com.example.act3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmk4JW3J7rW9NWtiRMhG5Q-XsaM5gIiV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

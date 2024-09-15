@@ -1,11 +1,11 @@
-package com.example.act2;
+package com.example.act3;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +16,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.act3.R;
+import com.example.act3.FirebaseHelper;
+import com.example.act3.HelperClass;
+
 import java.util.Calendar;
 
 public class SignUp extends AppCompatActivity {
@@ -23,7 +27,7 @@ public class SignUp extends AppCompatActivity {
     EditText birthdate, birthtime, email, username, password, phone, interests;
     AutoCompleteTextView country, state;
     Button submit, login;
-
+    FirebaseHelper firebaseHelper;
     String[] stateArray;
 
     @Override
@@ -43,6 +47,9 @@ public class SignUp extends AppCompatActivity {
         login = findViewById(R.id.login);
         country = findViewById(R.id.autoCompleteTextView);
         state = findViewById(R.id.autoCompleteTextView3);
+
+        // Initialize FirebaseHelper
+        firebaseHelper = new FirebaseHelper();
 
         // Setup AutoCompleteTextView for countries
         String[] countries = getResources().getStringArray(R.array.array_region_dropdown);
@@ -86,30 +93,60 @@ public class SignUp extends AppCompatActivity {
 
         // Submit button functionality
         submit.setOnClickListener(v -> {
-            // Validate all fields
             if (validateFields()) {
-                // Collect all the input data
-                String userData = "Username: " + username.getText().toString() + "\n" +
-                        "Email: " + email.getText().toString() + "\n" +
-                        "Phone: " + phone.getText().toString() + "\n" +
-                        "Country: " + country.getText().toString() + "\n" +
-                        "State: " + state.getText().toString() + "\n" +
-                        "Interests: " + interests.getText().toString() + "\n" +
-                        "Birthdate: " + birthdate.getText().toString() + "\n" +
-                        "Birth Time: " + birthtime.getText().toString();
+                String usernameText = username.getText().toString().trim();
+                String emailText = email.getText().toString().trim();
 
-                // Create an alert dialog to display the information
-                new AlertDialog.Builder(SignUp.this)
-                        .setTitle("Submitted Information")
-                        .setMessage(userData)
-                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-                        .show();
+                // Check if email already exists
+                firebaseHelper.checkEmailExists(emailText, emailExists -> {
+                    if (emailExists) {
+                        email.setError("Email already exists, try another email.");
+                        Toast.makeText(SignUp.this, "Email already exists, please try another email.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Check if username already exists
+                        firebaseHelper.checkUsernameExists(usernameText, usernameExists -> {
+                            if (usernameExists) {
+                                username.setError("Username already exists.");
+                                Toast.makeText(SignUp.this, "Username already exists, please choose another username.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Both email and username are unique, proceed with registration
+                                HelperClass user = new HelperClass(
+                                        usernameText,
+                                        emailText,
+                                        password.getText().toString().trim(),
+                                        interests.getText().toString().trim(),
+                                        Integer.parseInt(phone.getText().toString().trim()),
+                                        parseDate(birthtime.getText().toString().trim()),
+                                        parseDate(birthdate.getText().toString().trim())
+                                );
+
+                                // Save user data to Firebase
+                                firebaseHelper.saveUser(user, new FirebaseHelper.Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        Toast.makeText(SignUp.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                        // Navigate to the login screen after successful registration
+                                        Intent intent = new Intent(SignUp.this, LogIn.class);
+                                        startActivity(intent);
+                                    }
+
+                                    @Override
+                                    public void onFailure(String errorMessage) {
+                                        Toast.makeText(SignUp.this, "Registration failed: " + errorMessage, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
         });
 
         // Set onClickListener for Login button
         login.setOnClickListener(v -> {
-            Toast.makeText(SignUp.this, "Navigate to Login Screen", Toast.LENGTH_SHORT).show();
+            // Navigate to the LogIn activity
+            Intent intent = new Intent(SignUp.this, LogIn.class);
+            startActivity(intent);
         });
     }
 
@@ -222,5 +259,10 @@ public class SignUp extends AppCompatActivity {
             default:
                 return new String[0];
         }
+    }
+
+    private long parseDate(String dateString) {
+        // Convert dateString to a timestamp or any desired format
+        return System.currentTimeMillis();
     }
 }

@@ -8,14 +8,16 @@
     tools:context=".MainActivity"
     android:background="@drawable/homescreen">
 
+    <!-- Updated TextView Constraint -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        tools:ignore="ContentDescription,MissingConstraints" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="ContentDescription,MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <!-- Updated TextView Constraint -->
     <TextView
         android:id="@+id/helloTextView"
         android:layout_width="wrap_content"
@@ -49,7 +51,7 @@
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="Sign Up"
         android:textColor="#FFFFFF"
         android:backgroundTint="#6200EE"
         android:layout_marginStart="20dp"
@@ -62,14 +64,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/oswald_semibold"
         android:text="Created by: Aguilar, Rose Ann C."
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
